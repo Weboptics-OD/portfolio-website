@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    (function () {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>ServiceTitan Website Redesign — Abdussalam Ahmad</title>
+  <meta name="description" content="A modern redesign concept for ServiceTitan focused on improving UX, simplifying navigation, and boosting demo conversions." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brandBlack: '#000000',
+            brandGlass: '#111111',
+            brandGray: '#BFBFBF',
+            cyanAccent: '#00FFFF',
+            silverGray: '#C0C0C0',
+            brandCyan: '#00f2ff',
+            darkGlass: '#111111',
+            primary: "#00FFFF",
+            "background-light": "#f5f7f8",
+            "background-dark": "#000000",
+            "card-dark": "#111111",
+            "accent-gray": "#BFBFBF",
+            'brand-black': '#000000',
+            'brand-gray': '#888888',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ["Space Grotesk", "sans-serif"],
+            mono: ['Fira Code', 'monospace']
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg2: #f1f5f9;
+      --bg3: #ffffff;
+      --border: rgba(15, 23, 42, 0.1);
+      --border2: rgba(15, 23, 42, 0.16);
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #0891b2;
+      --accent2: #06b6d4;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html.dark {
+      --bg: #000000;
+      --bg2: #050505;
+      --bg3: #111111;
+      --border: rgba(255, 255, 255, 0.08);
+      --border2: rgba(255, 255, 255, 0.18);
+      --text: #ffffff;
+      --muted: #BFBFBF;
+      --accent: #00FFFF;
+      --accent2: #00f2ff;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Nav ─── */
+    .nav-glass {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    html:not(.dark) .nav-glass {
+      background: rgba(255, 255, 255, 0.78);
+      border-bottom-color: rgba(15, 23, 42, 0.08);
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: white;
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    html:not(.dark) nav .nav-link::after {
+      background: #0f172a;
+      box-shadow: none;
+    }
+
+    .nav-cta-outline {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .nav-cta-outline:hover {
+      background: white;
+      color: black;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      border-color: white;
+    }
+
+    html:not(.dark) .nav-cta-outline:hover {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+
+    .logo-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      width: 200px;
+      cursor: pointer;
+    }
+
+    .logo-text, .logo-signature {
+      position: absolute;
+      left: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .logo-signature {
+      height: 32px;
+      opacity: 0;
+      transform: translateY(5px) scale(1);
+      transform-origin: left center;
+      pointer-events: none;
+    }
+
+    html:not(.dark) .logo-signature { filter: brightness(0); }
+    html.dark .logo-signature { filter: brightness(0) invert(1); }
+
+    .logo-container.is-flipped .logo-text,
+    .logo-container:hover .logo-text {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+
+    .logo-container.is-flipped .logo-signature,
+    .logo-container:hover .logo-signature {
+      opacity: 1;
+      transform: translateY(0) scale(2.2);
+    }
+
+    /* ─── Case Study Hero ─── */
+    .cs-hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .cs-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .cs-label span:first-child {
+      opacity: 0.6;
+    }
+
+    .cs-label .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .cs-hero .cs-desc {
+      max-width: 560px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .cs-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cs-meta-item .label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .cs-meta-item .value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ─── Showcase (Before / After) ─── */
+    .cs-showcase {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .cs-showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-showcase-panel {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cs-showcase-panel .panel-label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      z-index: 2;
+      background: var(--bg3);
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .cs-showcase-panel img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cs-showcase-panel:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ─── Section Blocks ─── */
+    .cs-section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .cs-section-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      opacity: 0.8;
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 680px;
+    }
+
+    /* ─── Results ─── */
+    .cs-results {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .cs-results-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .cs-results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .cs-result-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .cs-result-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .cs-result-card .metric {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-result-card .metric-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── CTA / Visit Site ─── */
+    .cs-cta {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+    }
+
+    .cs-cta-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .cs-cta-card p {
+      font-size: 1.125rem;
+      color: var(--text);
+      max-width: 520px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .cs-cta-card p strong {
+      font-weight: 700;
+    }
+
+    .cs-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.875rem 2rem;
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.02em;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cs-cta-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    }
+
+    html:not(.dark) .cs-cta-btn {
+      background: #0891b2;
+      color: #fff;
+    }
+
+    /* ─── Back Link ─── */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .cs-back:hover {
+      color: var(--accent);
+    }
+
+    /* ─── Footer ─── */
+    .social-link {
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: scale(1.1);
+    }
+
+    footer .social-link:hover { color: #0f172a; }
+    html.dark footer .social-link:hover { color: #ffffff; }
+
+    /* ─── Mobile Nav ─── */
+    #home-mobile-nav a {
+      display: block;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      font-size: 0.8125rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(15, 23, 42, 0.88);
+    }
+
+    html.dark #home-mobile-nav a {
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    #home-mobile-nav a:last-child { border-bottom: none; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .cs-showcase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-cta-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cs-meta-row {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="fixed top-0 left-0 w-full z-50 nav-glass" aria-label="Primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
+      <div class="flex-shrink-0 min-w-0">
+        <a class="text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight" href="index.html">
+          <div class="logo-container">
+            <span class="logo-text text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight">Abdussalam Ahmad</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-8 text-[0.8125rem] tracking-widest uppercase font-medium">
+        <a class="nav-link text-gray-700 dark:text-gray-300" href="home.html">Home</a>
+        <a class="nav-link text-gray-700 dark:text-gray-300" href="about.html">About</a>
+        <a class="nav-link text-gray-700 dark:text-gray-300" href="portfolio.html">Portfolio</a>
+        <a class="nav-link text-gray-700 dark:text-gray-300" href="contact.html">Contact</a>
+        <button id="theme-toggle"
+          class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-all"
+          aria-label="Toggle theme">
+          <span class="material-symbols-outlined text-[18px] text-gray-700 dark:text-gray-300"
+            id="theme-toggle-icon">light_mode</span>
+        </button>
+        <a class="nav-cta-outline px-4 py-2 rounded-full text-gray-700 dark:text-white text-[0.75rem] tracking-widest uppercase"
+          href="contact.html">Let's Talk</a>
+      </div>
+
+      <button id="home-nav-toggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg"
+        aria-expanded="false" aria-label="Open menu">
+        <span class="material-symbols-outlined text-[22px] text-gray-700 dark:text-white"
+          id="home-nav-toggle-icon">menu</span>
+      </button>
+    </div>
+
+    <div id="home-mobile-nav" class="hidden md:hidden px-6 pb-6 pt-2">
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle-mobile" class="w-full text-left py-3 text-sm uppercase tracking-widest text-gray-700 dark:text-gray-300">
+        <span class="material-symbols-outlined text-[16px] align-middle mr-2" id="theme-toggle-icon-mobile">light_mode</span>
+        Toggle Theme
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="cs-hero">
+    <a href="portfolio.html" class="cs-back">← Back to Portfolio</a>
+
+    <div class="cs-label">
+      <span>Case Study</span>
+      <span class="dot"></span>
+      <span>SaaS Website Redesign</span>
+    </div>
+
+    <h1>
+      How <em>ServiceTitan</em><br />
+      could convert more<br />
+      with a cleaner UX
+    </h1>
+
+    <p class="cs-desc">
+      A modern redesign concept focused on improving user experience, simplifying navigation, and creating a clearer path to product discovery and demo booking.
+    </p>
+
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="label">Client</span>
+        <span class="value">ServiceTitan</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="label">Role</span>
+        <span class="value">UI/UX Design · Website Redesign</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="label">Scope</span>
+        <span class="value">Concept Project</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="label">Year</span>
+        <span class="value">2024</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HERO SCREENSHOT ═══ -->
+  <div class="cs-showcase">
+    <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+      <img src="media__1782147301880.png" alt="ServiceTitan current website homepage"
+        style="width: 100%; height: auto; display: block;" />
+    </div>
+  </div>
+
+  <!-- ═══ THE PROBLEM ═══ -->
+  <section class="cs-section">
+    <p class="cs-section-label">The Problem</p>
+    <h2>Complex navigation creates friction for first-time visitors</h2>
+    <p>
+      ServiceTitan offers a powerful suite of software solutions for home and commercial service businesses. However, the large volume of products, resources, and navigation options can make it difficult for new visitors to quickly understand the platform and identify the right solution for their needs.
+    </p>
+  </section>
+
+  <!-- ═══ BEFORE → AFTER ═══ -->
+  <div class="cs-showcase">
+    <div class="cs-showcase-grid">
+      <div class="cs-showcase-panel">
+        <span class="panel-label">Before → Current Site</span>
+        <img src="media__1782147301880.png" alt="ServiceTitan current website" />
+      </div>
+      <div class="cs-showcase-panel">
+        <span class="panel-label">After → Redesign Concept</span>
+        <img src="servicetitan-thumbnail.png" alt="ServiceTitan redesign concept" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIMPLIFIED USER JOURNEY ═══ -->
+  <section class="cs-section">
+    <p class="cs-section-label">Approach</p>
+    <h2>Simplified user journey</h2>
+    <p>
+      The redesign restructures the information architecture to help visitors move from discovery to demo request with fewer distractions and clearer decision points. Key improvements include a streamlined navigation structure, an interactive product showcase, and a refined user flow that reduces cognitive load at every step.
+    </p>
+  </section>
+
+  <!-- ═══ FULL REDESIGN PREVIEW ═══ -->
+  <div class="cs-showcase">
+    <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+      <img src="servicetitan-thumbnail.png" alt="ServiceTitan full redesign concept"
+        style="width: 100%; height: auto; display: block;" />
+    </div>
+  </div>
+
+  <!-- ═══ RESULTS ═══ -->
+  <section class="cs-results">
+    <p class="cs-results-label">Projected Impact</p>
+    <div class="cs-results-grid">
+      <div class="cs-result-card">
+        <div class="metric">↑</div>
+        <div class="metric-label">User Journey Clarity</div>
+      </div>
+      <div class="cs-result-card">
+        <div class="metric">↓</div>
+        <div class="metric-label">Navigation Complexity</div>
+      </div>
+      <div class="cs-result-card">
+        <div class="metric">↑</div>
+        <div class="metric-label">Demo Conversion Potential</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cs-cta">
+    <div class="cs-cta-card">
+      <p>
+        This is a concept redesign project exploring how <strong>ServiceTitan's</strong> web experience could be improved through better information architecture and conversion-focused design.
+      </p>
+      <a href="https://www.servicetitan.com/" target="_blank" rel="noopener noreferrer" class="cs-cta-btn">
+        Visit ServiceTitan
+        <span style="font-size: 1.1em;">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="relative z-10 px-6 sm:px-10 md:px-16 py-16 bg-zinc-50 dark:bg-black border-t border-black/10 dark:border-white/10">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="col-span-1 md:col-span-2 flex flex-col space-y-5">
+          <h2 class="text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">Abdussalam Ahmad</h2>
+          <p class="text-sm font-light leading-relaxed text-brand-gray max-w-xs">
+            Designing digital experiences that convert. Websites, funnels, AI automations, and brand identities — built
+            to grow businesses.
+          </p>
+        </div>
+
+        <div class="col-span-1 md:col-span-2 grid grid-cols-2 gap-4 md:gap-8">
+          <nav class="flex flex-col space-y-4">
+            <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
+            <ul class="flex flex-col space-y-3">
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="home.html">Home</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="about.html">About</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="portfolio.html">Portfolio</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="flex flex-col space-y-4 md:items-end">
+            <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Connect</h3>
+            <ul class="flex flex-col space-y-3 md:items-end">
+              <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
+              <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
+              <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="mailto:contact@example.com">Email</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-black/10 dark:border-white/10 mt-12">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] tracking-widest text-brand-gray uppercase">
+          <p>© 2026 Abdussalam Ahmad — All rights reserved.</p>
+          <div class="flex space-x-6">
+            <span>Privacy Policy</span>
+            <span>Terms of Service</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    (function () {
+      var themeToggle = document.getElementById('theme-toggle');
+      var themeToggleMobile = document.getElementById('theme-toggle-mobile');
+      var themeToggleIcon = document.getElementById('theme-toggle-icon');
+      var themeToggleIconMobile = document.getElementById('theme-toggle-icon-mobile');
+      var html = document.documentElement;
+
+      function updateIcons(theme) {
+        var iconName = theme === 'dark' ? 'light_mode' : 'dark_mode';
+        if (themeToggleIcon) themeToggleIcon.textContent = iconName;
+        if (themeToggleIconMobile) themeToggleIconMobile.textContent = iconName;
+      }
+
+      function toggleTheme() {
+        var isDark = html.classList.contains('dark');
+        var newTheme = isDark ? 'light' : 'dark';
+        if (newTheme === 'dark') {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+        localStorage.setItem('theme', newTheme);
+        updateIcons(newTheme);
+      }
+
+      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+      if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+      updateIcons(localStorage.getItem('theme') || 'dark');
+    })();
+  </script>
+  <script>
+    (function () {
+      var btn = document.getElementById('home-nav-toggle');
+      var panel = document.getElementById('home-mobile-nav');
+      var icon = document.getElementById('home-nav-toggle-icon');
+      if (!btn || !panel) return;
+      function setOpen(open) {
+        if (open) {
+          panel.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.setAttribute('aria-label', 'Close menu');
+          if (icon) icon.textContent = 'close';
+        } else {
+          panel.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Open menu');
+          if (icon) icon.textContent = 'menu';
+        }
+      }
+      btn.addEventListener('click', function () {
+        setOpen(panel.classList.contains('hidden'));
+      });
+      panel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setOpen(false);
+        });
+      });
+    })();
+  </script>
+  <script>
+    /* ── Auto-flipping Logo Logic ── */
+    (function () {
+      const logoContainer = document.querySelector('.logo-container');
+      if (logoContainer) {
+        setInterval(() => {
+          logoContainer.classList.toggle('is-flipped');
+        }, 3500);
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
