@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Android & Gradle
+.gradle/
+build/
+android/.gradle/
+android/app/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/app/*.iml
+
+# iOS & Xcode
+ios/App/Pods/
+ios/App/build/
+*.xcuserstate
+*.xcuserdatad/
+
+# Operating System & IDE
+.DS_Store
+*/.DS_Store
+Thumbs.db
+.vscode/
+*.log
