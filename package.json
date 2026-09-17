@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/activeahmad/Portfolio.git"
+    "url": "git+https://github.com/activeDaodu/Portfolio.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/activeahmad/Portfolio/issues"
+    "url": "https://github.com/activeDaodu/Portfolio/issues"
   },
-  "homepage": "https://github.com/activeahmad/Portfolio#readme",
+  "homepage": "https://github.com/activeDaodu/Portfolio#readme",
   "dependencies": {
     "@capacitor/android": "^8.3.0",
     "@capacitor/cli": "^8.3.0",

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.ahmad.portfolio'
+    namespace 'com.Daodu.portfolio'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.ahmad.portfolio"
+        applicationId "com.Daodu.portfolio"
         minSdk 24
         targetSdk 34
         versionCode 1
