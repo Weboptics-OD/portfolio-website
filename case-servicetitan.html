@@ -14,8 +14,9 @@
   </script>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>ServiceTitan Website Redesign — Abdussalam Ahmad</title>
-  <meta name="description" content="A modern redesign concept for ServiceTitan focused on improving UX, simplifying navigation, and boosting demo conversions." />
+  <title>ServiceTitan Website Redesign — Odunayo Daodu</title>
+  <meta name="description"
+    content="A modern redesign concept for ServiceTitan focused on improving UX, simplifying navigation, and boosting demo conversions." />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
@@ -79,7 +80,8 @@
       --accent2: #00f2ff;
     }
 
-    body, html {
+    body,
+    html {
       margin: 0;
       padding: 0;
       background-color: var(--bg);
@@ -120,7 +122,9 @@
       transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover::after {
+      width: 100%;
+    }
 
     html:not(.dark) nav .nav-link::after {
       background: #0f172a;
@@ -154,7 +158,8 @@
       cursor: pointer;
     }
 
-    .logo-text, .logo-signature {
+    .logo-text,
+    .logo-signature {
       position: absolute;
       left: 0;
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -168,8 +173,13 @@
       pointer-events: none;
     }
 
-    html:not(.dark) .logo-signature { filter: brightness(0); }
-    html.dark .logo-signature { filter: brightness(0) invert(1); }
+    html:not(.dark) .logo-signature {
+      filter: brightness(0);
+    }
+
+    html.dark .logo-signature {
+      filter: brightness(0) invert(1);
+    }
 
     .logo-container.is-flipped .logo-text,
     .logo-container:hover .logo-text {
@@ -489,8 +499,13 @@
       transform: scale(1.1);
     }
 
-    footer .social-link:hover { color: #0f172a; }
-    html.dark footer .social-link:hover { color: #ffffff; }
+    footer .social-link:hover {
+      color: #0f172a;
+    }
+
+    html.dark footer .social-link:hover {
+      color: #ffffff;
+    }
 
     /* ─── Mobile Nav ─── */
     #home-mobile-nav a {
@@ -508,7 +523,9 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    #home-mobile-nav a:last-child { border-bottom: none; }
+    #home-mobile-nav a:last-child {
+      border-bottom: none;
+    }
 
     /* ─── Responsive ─── */
     @media (max-width: 768px) {
@@ -540,7 +557,9 @@
       <div class="flex-shrink-0 min-w-0">
         <a class="text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight" href="index.html">
           <div class="logo-container">
-            <span class="logo-text text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight">Abdussalam Ahmad</span>
+            <span
+              class="logo-text text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight">Odunayo
+              Daodu</span>
           </div>
         </a>
       </div>
@@ -572,8 +591,10 @@
       <a href="about.html">About</a>
       <a href="portfolio.html">Portfolio</a>
       <a href="contact.html">Contact</a>
-      <button id="theme-toggle-mobile" class="w-full text-left py-3 text-sm uppercase tracking-widest text-gray-700 dark:text-gray-300">
-        <span class="material-symbols-outlined text-[16px] align-middle mr-2" id="theme-toggle-icon-mobile">light_mode</span>
+      <button id="theme-toggle-mobile"
+        class="w-full text-left py-3 text-sm uppercase tracking-widest text-gray-700 dark:text-gray-300">
+        <span class="material-symbols-outlined text-[16px] align-middle mr-2"
+          id="theme-toggle-icon-mobile">light_mode</span>
         Toggle Theme
       </button>
     </div>
@@ -596,7 +617,8 @@
     </h1>
 
     <p class="cs-desc">
-      A modern redesign concept focused on improving user experience, simplifying navigation, and creating a clearer path to product discovery and demo booking.
+      A modern redesign concept focused on improving user experience, simplifying navigation, and creating a clearer
+      path to product discovery and demo booking.
     </p>
 
     <div class="cs-meta-row">
@@ -632,7 +654,9 @@
     <p class="cs-section-label">The Problem</p>
     <h2>Complex navigation creates friction for first-time visitors</h2>
     <p>
-      ServiceTitan offers a powerful suite of software solutions for home and commercial service businesses. However, the large volume of products, resources, and navigation options can make it difficult for new visitors to quickly understand the platform and identify the right solution for their needs.
+      ServiceTitan offers a powerful suite of software solutions for home and commercial service businesses. However,
+      the large volume of products, resources, and navigation options can make it difficult for new visitors to quickly
+      understand the platform and identify the right solution for their needs.
     </p>
   </section>
 
@@ -655,7 +679,9 @@
     <p class="cs-section-label">Approach</p>
     <h2>Simplified user journey</h2>
     <p>
-      The redesign restructures the information architecture to help visitors move from discovery to demo request with fewer distractions and clearer decision points. Key improvements include a streamlined navigation structure, an interactive product showcase, and a refined user flow that reduces cognitive load at every step.
+      The redesign restructures the information architecture to help visitors move from discovery to demo request with
+      fewer distractions and clearer decision points. Key improvements include a streamlined navigation structure, an
+      interactive product showcase, and a refined user flow that reduces cognitive load at every step.
     </p>
   </section>
 
@@ -690,7 +716,8 @@
   <section class="cs-cta">
     <div class="cs-cta-card">
       <p>
-        This is a concept redesign project exploring how <strong>ServiceTitan's</strong> web experience could be improved through better information architecture and conversion-focused design.
+        This is a concept redesign project exploring how <strong>ServiceTitan's</strong> web experience could be
+        improved through better information architecture and conversion-focused design.
       </p>
       <a href="https://www.servicetitan.com/" target="_blank" rel="noopener noreferrer" class="cs-cta-btn">
         Visit ServiceTitan
@@ -700,11 +727,12 @@
   </section>
 
   <!-- ═══ FOOTER ═══ -->
-  <footer class="relative z-10 px-6 sm:px-10 md:px-16 py-16 bg-zinc-50 dark:bg-black border-t border-black/10 dark:border-white/10">
+  <footer
+    class="relative z-10 px-6 sm:px-10 md:px-16 py-16 bg-zinc-50 dark:bg-black border-t border-black/10 dark:border-white/10">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
         <div class="col-span-1 md:col-span-2 flex flex-col space-y-5">
-          <h2 class="text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">Abdussalam Ahmad</h2>
+          <h2 class="text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">Odunayo Daodu</h2>
           <p class="text-sm font-light leading-relaxed text-brand-gray max-w-xs">
             Designing digital experiences that convert. Websites, funnels, AI automations, and brand identities — built
             to grow businesses.
@@ -715,10 +743,14 @@
           <nav class="flex flex-col space-y-4">
             <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
             <ul class="flex flex-col space-y-3">
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="home.html">Home</a></li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="about.html">About</a></li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="portfolio.html">Portfolio</a></li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white" href="contact.html">Contact</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white"
+                  href="home.html">Home</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white"
+                  href="about.html">About</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white"
+                  href="portfolio.html">Portfolio</a></li>
+              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-slate-900 dark:hover:text-white"
+                  href="contact.html">Contact</a></li>
             </ul>
           </nav>
 
@@ -727,15 +759,17 @@
             <ul class="flex flex-col space-y-3 md:items-end">
               <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
               <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
-              <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="mailto:contact@example.com">Email</a></li>
+              <li><a class="social-link text-sm font-light text-brand-gray inline-block"
+                  href="mailto:contact@example.com">Email</a></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="pt-8 border-t border-black/10 dark:border-white/10 mt-12">
-        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] tracking-widest text-brand-gray uppercase">
-          <p>© 2026 Abdussalam Ahmad — All rights reserved.</p>
+        <div
+          class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] tracking-widest text-brand-gray uppercase">
+          <p>© 2026 Odunayo Daodu — All rights reserved.</p>
           <div class="flex space-x-6">
             <span>Privacy Policy</span>
             <span>Terms of Service</span>
@@ -747,35 +781,35 @@
 
   <!-- ═══ SCRIPTS ═══ -->
   <script>
-    (function () {
-      var themeToggle = document.getElementById('theme-toggle');
-      var themeToggleMobile = document.getElementById('theme-toggle-mobile');
-      var themeToggleIcon = document.getElementById('theme-toggle-icon');
-      var themeToggleIconMobile = document.getElementById('theme-toggle-icon-mobile');
-      var html = document.documentElement;
+      (function () {
+        var themeToggle = document.getElementById('theme-toggle');
+        var themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        var themeToggleIcon = document.getElementById('theme-toggle-icon');
+        var themeToggleIconMobile = document.getElementById('theme-toggle-icon-mobile');
+        var html = document.documentElement;
 
-      function updateIcons(theme) {
-        var iconName = theme === 'dark' ? 'light_mode' : 'dark_mode';
-        if (themeToggleIcon) themeToggleIcon.textContent = iconName;
-        if (themeToggleIconMobile) themeToggleIconMobile.textContent = iconName;
-      }
-
-      function toggleTheme() {
-        var isDark = html.classList.contains('dark');
-        var newTheme = isDark ? 'light' : 'dark';
-        if (newTheme === 'dark') {
-          html.classList.add('dark');
-        } else {
-          html.classList.remove('dark');
+        function updateIcons(theme) {
+          var iconName = theme === 'dark' ? 'light_mode' : 'dark_mode';
+          if (themeToggleIcon) themeToggleIcon.textContent = iconName;
+          if (themeToggleIconMobile) themeToggleIconMobile.textContent = iconName;
         }
-        localStorage.setItem('theme', newTheme);
-        updateIcons(newTheme);
-      }
 
-      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-      if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
-      updateIcons(localStorage.getItem('theme') || 'dark');
-    })();
+        function toggleTheme() {
+          var isDark = html.classList.contains('dark');
+          var newTheme = isDark ? 'light' : 'dark';
+          if (newTheme === 'dark') {
+            html.classList.add('dark');
+          } else {
+            html.classList.remove('dark');
+          }
+          localStorage.setItem('theme', newTheme);
+          updateIcons(newTheme);
+        }
+
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+        if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+        updateIcons(localStorage.getItem('theme') || 'dark');
+      })();
   </script>
   <script>
     (function () {

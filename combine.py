@@ -73,7 +73,7 @@ combined_html = f"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Abdussalam Ahmad - Digital Portfolio</title>
+<title>Odunayo Daodu - Digital Portfolio</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 {''.join(fonts)}
 <script>
