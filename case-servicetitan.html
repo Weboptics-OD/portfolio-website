@@ -143,17 +143,11 @@
       border-color: white;
     }
 
-    html:not(.dark) .nav-cta-outline:hover {
-      background: #0f172a;
-      color: #ffffff;
-      border-color: #0f172a;
-    }
-
     .logo-container {
       position: relative;
       display: flex;
       align-items: center;
-      height: 32px;
+      height: 36px;
       width: 200px;
       cursor: pointer;
     }
@@ -162,11 +156,11 @@
     .logo-signature {
       position: absolute;
       left: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     }
 
     .logo-signature {
-      height: 32px;
+      height: 36px;
       opacity: 0;
       transform: translateY(5px) scale(1);
       transform-origin: left center;
@@ -190,7 +184,14 @@
     .logo-container.is-flipped .logo-signature,
     .logo-container:hover .logo-signature {
       opacity: 1;
-      transform: translateY(0) scale(2.2);
+      transform: translateY(0) scale(1);
+    }
+
+
+    html:not(.dark) .nav-cta-outline:hover {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
     }
 
     /* ─── Case Study Hero ─── */
@@ -555,14 +556,13 @@
   <nav class="fixed top-0 left-0 w-full z-50 nav-glass" aria-label="Primary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between gap-3">
       <div class="flex-shrink-0 min-w-0">
-        <a class="text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight" href="index.html">
-          <div class="logo-container">
-            <span
-              class="logo-text text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight">Odunayo
-              Daodu</span>
-          </div>
-        </a>
-      </div>
+          <a class="text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight" href="index.html">
+            <div class="logo-container">
+              <span class="logo-text text-gray-900 dark:text-white font-extrabold text-lg sm:text-xl tracking-tight">Odunayo Daodu</span>
+              <img alt="Weboptics Logo" class="logo-signature w-auto" src="logo.png" />
+            </div>
+          </a>
+        </div>
 
       <div class="hidden md:flex items-center gap-8 text-[0.8125rem] tracking-widest uppercase font-medium">
         <a class="nav-link text-gray-700 dark:text-gray-300" href="home.html">Home</a>
@@ -840,6 +840,8 @@
       });
     })();
   </script>
+
+
   <script>
     /* ── Auto-flipping Logo Logic ── */
     (function () {
